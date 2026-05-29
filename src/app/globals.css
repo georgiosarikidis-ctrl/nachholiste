@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Fonts ──────────────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --font-display: 'Instrument Serif', Georgia, serif;
+  }
+}
+
+/* ─── Dark Mode (default) ─────────────────────────────────────────────────────── */
+:root {
+  --bg:         #0F0F14;
+  --surface-1:  #16161E;
+  --surface-2:  #1E1E28;
+  --surface-3:  #2A2A35;
+  --border:     #2A2A35;
+  --foreground: #E8E6E0;
+  --muted:      #6B6B7A;
+}
+
+/* ─── Light Mode ──────────────────────────────────────────────────────────────── */
+.light {
+  --bg:         #F5F4F0;
+  --surface-1:  #FFFFFF;
+  --surface-2:  #F0EEE8;
+  --surface-3:  #E8E5DC;
+  --border:     #E0DDD4;
+  --foreground: #1A1A20;
+  --muted:      #8A8A98;
+}
+
+/* ─── Base ────────────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg);
+  color: var(--foreground);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--foreground);
+  min-height: 100vh;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* ─── Scrollbars ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: 99px;
+}
+
+/* ─── Selection ───────────────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(167, 139, 250, 0.3);
+}
+
+/* ─── Tailwind custom utilities ───────────────────────────────────────────────── */
+@layer utilities {
+  .bg-page      { background-color: var(--bg); }
+  .bg-surface-1 { background-color: var(--surface-1); }
+  .bg-surface-2 { background-color: var(--surface-2); }
+  .bg-surface-3 { background-color: var(--surface-3); }
+  .border-border { border-color: var(--border); }
+  .text-foreground { color: var(--foreground); }
+  .text-muted-foreground { color: var(--muted); }
+  .font-display { font-family: var(--font-display); }
+}
+
+/* ─── Animations ──────────────────────────────────────────────────────────────── */
+@keyframes slideInFromLeft {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ─── Form inputs — date/time native styling ──────────────────────────────────── */
+input[type="date"],
+input[type="datetime-local"],
+input[type="time"] {
+  color-scheme: dark;
+}
+
+.light input[type="date"],
+.light input[type="datetime-local"],
+.light input[type="time"] {
+  color-scheme: light;
+}
